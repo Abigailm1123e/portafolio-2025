@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio IA & Diseño Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="js.js">js</script>
+    <script src="metricas.js">js</script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+<body class="bg-gray-50 text-gray-800" >
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<img src="logo.png" alt="Mi robot IA" class="w-24 object-cover rounded-full bg-white ">
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link active" onclick="showSection('dashboard'); return false;"> 🧠 Inicio</a>
+                <a href="#" class="nav-link" onclick="showSection('tablero'); return false;">📊 Visualizaciones</a>
+                <a href="#" class="nav-link" onclick="showSection('proyectos-ia'); return false;">🧬 Modelos o Apps</a>
+              <!--  <a href="#" class="nav-link" onclick="showSection('diseno-web'); return false;">🖥️ Interfaces</a>
+                <a href="#" class="nav-link" onclick="showSection('blog'); return false;">📓Blog</a>-->
+                <a href="#" class="nav-link" onclick="showSection('contacto'); return false;">💬Conecta</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 shadow-md">
+            <a href="#" class="block py-2 hover:text-blue-600" onclick="showSection('dashboard'); return false;">🧠 Inicio</a>
+            <a href="#" class="block py-2 hover:text-blue-600" onclick="showSection('tablero'); return false;">📊 Visualizaciones</a>
+            <a href="#" class="block py-2 hover:text-blue-600" onclick="showSection('proyectos-ia'); return false;">🧬 Modelos o Apps</a>
+          <!-- <a href="#" class="block py-2 hover:text-blue-600" onclick="showSection('diseno-web'); return false;">🖥️ Interfaces</a>
+            <a href="#" class="block py-2 hover:text-blue-600" onclick="showSection('blog'); return false;">📓Blog</a>-->
+            <a href="#" class="block py-2 hover:text-blue-600" onclick="showSection('contacto'); return false;">💬Conecta</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-50"  style="background-image: url('img2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-800">
+                        <span class="block">Este no es un portfolio</span>
+                        <span class="text-teal-400">Es un laboratorio digital</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light mb-8 text-cian-600">Soy Aby, desarrollo soluciones con datos, IA y automatización. Especializada en dashboards, predicciones y apps web inteligentes</p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                        <button class="px-6 py-3 bg-teal-400 text-white rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" onclick="showSection('tablero'); return false;">Ver Proyectos</button>
+                        <button class="px-6 py-3 bg-white text-teal-400 border border-blue-600 rounded-lg hover:bg-blue-50 transition duration-300" onclick="showSection('contacto'); return false;">Contactar</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="robot-svg w-64 md:w-96">
+                               <img src="logo.png" alt="Mi robot IA" class="w-35 h-35 object-cover rounded-full" />
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tablero Section -->
+        <section id="tablero" class="section min-h-screen py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-2">Visualización de Datos Inteligentes</h2>
+                    <p class="text-gray-600">Transformando datos en insights clave mediante herramientas de visualización y análisis predictivo impulsados por IA</p>
+                    <div class="w-24 h-1 bg-indigo-600 mx-auto mt-6"></div>
+                </div>
+                 
+    <section id="tablero" class="py-9 overflow-hidden">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Componente colapsable -->
+<div x-data="{ open: false }" class="rounded-2xl shadow-lg">
+      <!-- Título del acordeón -->
+    <button 
+  @click="open = !open" 
+  class="w-full text-left px-6 py-4 text-xl font-semibold flex justify-between items-center bg-white hover:bg-gray-100 rounded-t-2xl transition">
+  🌦️🌤️🌍📊 Dashboard del Clima
+  <svg :class="{'rotate-180': open}" class="h-5 w-5 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+  </svg>
+</button>
+
+
+      <!-- Contenido colapsable -->
+      <div x-show="open" x-transition class="px-6 pb-6">
+        <p class="text-gray-600 mb-4">
+Proyecto de integración entre Python, Streamlit y Google Sheets, donde se recolectan datos meteorológicos desde la API de OpenWeather, se procesan y visualizan en Looker Studio. Automatiza el flujo completo desde la obtención de datos hasta el tablero.        </p>
+
+        <div class="relative w-full aspect-video overflow-hidden rounded-lg">
+          <iframe 
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://lookerstudio.google.com/embed/reporting/21edde00-7a24-48d1-a6f0-22871c89fadc/page/page_12345" 
+            frameborder="0" 
+            allowfullscreen
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+     <!-- 🛒 Dashboard Comercial E-commerce -->
+    <div x-data="{ open: false }" class="mt-6 rounded-2xl shadow-lg">
+      <button 
+        @click="open = !open" 
+        class="w-full text-left px-6 py-4 text-xl font-semibold flex justify-between items-center bg-white hover:bg-gray-100 rounded-t-2xl transition">
+        📊💳👕👠 Dashboard Comercial de Tienda Online
+        <svg :class="{ 'rotate-180': open }" class="h-5 w-5 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <div x-show="open" x-transition class="px-6 pb-6">
+        <p class="text-gray-600 mb-4">
+          Dashboard analítico construido en Looker Studio con datos simulados de un e-commerce de ropa. Visualiza ventas por canal (Web, Móvil, WhatsApp), productos más vendidos, clientes nuevos vs recurrentes, tasa de conversión y evolución mensual del ingreso. Ideal para la toma de decisiones comerciales.
+        </p>
+
+        <div class="relative w-full aspect-video overflow-hidden rounded-lg">
+          <iframe 
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://lookerstudio.google.com/embed/reporting/62979980-f082-46e2-b24e-194b379d620a/page/qgR"
+            frameborder="0" 
+            allowfullscreen
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+  <!-- Metric Card 1 -->
+  <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm text-gray-500 mb-1">Proyectos Completados</p>
+       <h3 id="kpi-proyectos" class="text-3xl font-bold text-gray-800">0</h3>
+        <p id="kpi-crecimiento" class="text-green-600 text-sm mt-2 flex items-center">
+ 
+          <!-- Se rellenará dinámicamente -->
+        </p>
+
+
+      </div>
+      <div class="bg-blue-100 p-3 rounded-full">
+        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric Card 2 -->
+  <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+     <h3 class="text-lg font-semibold mb-4">Distribución de Tecnologías</h3>
+         <div class="h-30 bg-gray-50 rounded-lg flex items-center justify-center">
+           <!-- Placeholder for pie chart -->
+          <div class="relative w-40 h-40">
+            <!-- Pie chart (opcionalmente dinámico en el futuro) -->
+           <canvas id="pieChart" width="160" height="160">         
+           </canvas>
+           </div>
+         </div> <!-- ← Leyenda dinámica -->
+           <div id="leyenda-tecnologias" class="grid grid-cols-2 gap-2 mt-4"></div>
+          </div>
+            </div>
+        </section>
+        
+
+        <!-- Proyectos IA Section -->
+        <section id="proyectos-ia" class="section min-h-screen py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-2">Modelos de Inteligencia Artificial</h2>
+                    <p class="text-gray-600">Desarrollando modelos predictivos, chatbots y soluciones inteligentes para resolver problemas complejos</p>
+                    <div class="w-24 h-1 bg-blue-600 mx-auto mt-4"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+           <div class="project-card bg-white rounded-xl overflow-hidden shadow-md">
+  <div class="h-48 bg-gradient-to-r to-indigo-500 flex items-center justify-center">
+    <img src="img_cha.png" alt="Chatbot" class="h-full w-full object-cover" />
+  </div>
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Biblioteca con Chatbot Inteligente</h3>
+    <p class="text-gray-600 mb-4">Explora una biblioteca digital equipada con un chatbot inteligente que te recomienda libros usando IA y procesamiento de lenguaje natural.</p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">NLP</span>
+      <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Python</span>
+      <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Interfaz Web</span>
+    </div>
+    <button class="view-project w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 mb-2"
+      data-id="1"
+      data-title="Biblioteca con Chatbot Inteligente"
+      data-desc="Esta biblioteca digital incluye un chatbot desarrollado con IA capaz de interactuar con los usuarios, hacer recomendaciones personalizadas y mejorar su conocimiento a través del uso continuo."
+      data-image="robot">
+      Ver Detalles
+    </button>
+    <a href="https://abigailm1123e.github.io/chatbot3" target="_blank" class="block w-full text-center py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition duration-300">Ver Proyecto</a>
+  </div>
+</div>
+
+
+      
+
+                    
+                    <!-- Project Card 2 -->
+               <!-- Project Card AppSheet Menu -->
+<div class="project-card bg-white rounded-xl overflow-hidden shadow-md">
+    <div class="h-48 bg-gradient-to-r flex items-center justify-center p-0 m-0">
+        <img src="menu.jpg" alt="Chatbot" class="h-full w-full object-cover" />
+    </div>
+    <div class="p-6">
+        <h3 class="text-xl font-semibold mb-2">Menú Digital con QR en AppSheet</h3>
+        <p class="text-gray-600 mb-4">
+            Aplicación móvil creada con AppSheet que permite visualizar el menú de un restaurante mediante escaneo de código QR. Incluye categorías de platos, imágenes, precios y navegación optimizada.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">AppSheet</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">UX/UI</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">QR Code</span>
+        </div>
+        <a href="https://www.appsheet.com/start/274e4e6f-6cdf-40d7-9843-696e343c80dc" target="_blank">
+            <button class="view-project w-full py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
+                Ver App
+            </button>
+        </a>
+    </div>
+</div>
+
+
+
+                    
+                    <!-- Project Card 3 -->
+                    <div class="project-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Reconocimiento Visual Inteligente</h3>
+                            <p class="text-gray-600 mb-4">Sistema de visión por computadora que identifica y clasifica objetos en tiempo real.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Computer Vision</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Deep Learning</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">OpenCV</span>
+                            </div>
+                            <button class="view-project w-full py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300" data-id="3" data-title="Reconocimiento Visual Inteligente" data-desc="Este sistema utiliza redes neuronales convolucionales para identificar y clasificar objetos en imágenes y videos en tiempo real. Implementado con PyTorch y OpenCV, ofrece alta precisión en la detección de objetos, reconocimiento facial y análisis de escenas." data-image="camera">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diseño Web Section -->
+        <section id="diseno-web" class="section min-h-screen py-16 bg-gradient-to-br from-green-50 to-teal-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-2">Interfaces Inteligentes</h2>
+                    <p class="text-gray-600">Integrando Inteligencia Artificial en interfaces de usuario para una experiencia más eficiente e interactiva</p>
+                    <div class="w-24 h-1 bg-teal-600 mx-auto mt-4"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Web Design Project 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-64 bg-gradient-to-r from-teal-400 to-green-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-3/4 h-40 bg-white rounded-lg shadow-lg flex flex-col">
+                                    <div class="h-6 bg-gray-100 rounded-t-lg flex items-center px-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <div class="flex-1 p-3">
+                                        <div class="w-full h-4 bg-gray-200 rounded mb-2"></div>
+                                        <div class="w-2/3 h-4 bg-gray-200 rounded mb-4"></div>
+                                        <div class="flex space-x-2">
+                                            <div class="w-8 h-8 bg-teal-200 rounded"></div>
+                                            <div class="w-8 h-8 bg-teal-200 rounded"></div>
+                                            <div class="w-8 h-8 bg-teal-200 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">EcoLife - Tienda Ecológica</h3>
+                            <p class="text-gray-600 mb-4">Diseño y desarrollo de tienda online para productos ecológicos con enfoque en experiencia de usuario.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">E-commerce</span>
+                                <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">Responsive</span>
+                                <span class="px-3 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">UX/UI</span>
+                            </div>
+                            <a href="#" class="block w-full py-2 bg-teal-600 text-white text-center rounded-lg hover:bg-teal-700 transition duration-300">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Web Design Project 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-64 bg-gradient-to-r from-blue-400 to-cyan-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-3/4 h-40 bg-white rounded-lg shadow-lg flex flex-col">
+                                    <div class="h-6 bg-gray-100 rounded-t-lg flex items-center px-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <div class="flex-1 p-3">
+                                        <div class="w-full h-4 bg-gray-200 rounded mb-2"></div>
+                                        <div class="w-2/3 h-4 bg-gray-200 rounded mb-4"></div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="h-12 bg-blue-200 rounded"></div>
+                                            <div class="h-12 bg-blue-200 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">TechCorp - Dashboard Corporativo</h3>
+                            <p class="text-gray-600 mb-4">Diseño de interfaz para dashboard corporativo con visualización de datos en tiempo real.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Dashboard</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Data Visualization</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">React</span>
+                            </div>
+                            <a href="#" class="block w-full py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Web Design Project 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-64 bg-gradient-to-r from-purple-400 to-indigo-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-3/4 h-40 bg-white rounded-lg shadow-lg flex flex-col">
+                                    <div class="h-6 bg-gray-100 rounded-t-lg flex items-center px-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <div class="flex-1 p-3">
+                                        <div class="w-full h-4 bg-gray-200 rounded mb-2"></div>
+                                        <div class="w-2/3 h-4 bg-gray-200 rounded mb-4"></div>
+                                        <div class="h-12 bg-purple-200 rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">MindfulApp - Aplicación de Meditación</h3>
+                            <p class="text-gray-600 mb-4">Diseño de interfaz para aplicación móvil de meditación y mindfulness con experiencia inmersiva.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Mobile App</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">UI Animation</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Flutter</span>
+                            </div>
+                            <a href="#" class="block w-full py-2 bg-purple-600 text-white text-center rounded-lg hover:bg-purple-700 transition duration-300">Ver Proyecto</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Web Design Project 4 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="relative h-64 bg-gradient-to-r from-yellow-400 to-orange-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-3/4 h-40 bg-white rounded-lg shadow-lg flex flex-col">
+                                    <div class="h-6 bg-gray-100 rounded-t-lg flex items-center px-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <div class="flex-1 p-3">
+                                        <div class="w-full h-4 bg-gray-200 rounded mb-2"></div>
+                                        <div class="w-2/3 h-4 bg-gray-200 rounded mb-4"></div>
+                                        <div class="grid grid-cols-3 gap-1">
+                                            <div class="h-6 bg-yellow-200 rounded"></div>
+                                            <div class="h-6 bg-yellow-200 rounded"></div>
+                                            <div class="h-6 bg-yellow-200 rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">FoodieFind - Plataforma Gastronómica</h3>
+                            <p class="text-gray-600 mb-4">Diseño y desarrollo de plataforma para descubrir restaurantes locales con sistema de reseñas.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Web App</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Geolocation</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Vue.js</span>
+                            </div>
+                            <a href="#" class="block w-full py-2 bg-yellow-600 text-white text-center rounded-lg hover:bg-yellow-700 transition duration-300">Ver Proyecto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section min-h-screen py-16 bg-gradient-to-br from-purple-50 to-pink-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-2">Blog sobre Inteligencia Artificial</h2>
+                    <p class="text-gray-600">Reflexiones, tutoriales y análisis sobre IA, ciencia de datos y sus aplicaciones en el mundo real</p>
+                    <div class="w-24 h-1 bg-purple-600 mx-auto mt-4"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="h-48 bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Inteligencia Artificial</span>
+                                <span class="text-gray-400 text-sm ml-auto">12 Mayo, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">El Futuro de la IA Generativa</h3>
+                            <p class="text-gray-600 mb-4">Explorando las posibilidades y desafíos éticos de los modelos de IA generativa como GPT-4 y DALL-E.</p>
+                            <a href="#" class="text-purple-600 font-medium hover:text-purple-800 transition duration-300 flex items-center">
+                                Leer más
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="h-48 bg-gradient-to-r from-blue-400 to-cyan-500 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Diseño UX/UI</span>
+                                <span class="text-gray-400 text-sm ml-auto">28 Abril, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Principios de Diseño Centrado en el Usuario</h3>
+                            <p class="text-gray-600 mb-4">Cómo aplicar metodologías de diseño centrado en el usuario para crear experiencias digitales más efectivas.</p>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
+                                Leer más
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card bg-white rounded-xl overflow-hidden shadow-md">
+                        <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Desarrollo Web</span>
+                                <span class="text-gray-400 text-sm ml-auto">15 Abril, 2023</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Optimización de Rendimiento en Aplicaciones Web</h3>
+                            <p class="text-gray-600 mb-4">Estrategias y técnicas para mejorar la velocidad y rendimiento de aplicaciones web modernas.</p>
+                            <a href="#" class="text-green-600 font-medium hover:text-green-800 transition duration-300 flex items-center">
+                                Leer más
+                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <a href="#" class="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-300 shadow-md hover:shadow-lg">Ver Todos los Artículos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="section min-h-screen py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-2">Contacto</h2>
+                    <div class="w-24 h-1 bg-teal-600 mx-auto mt-4"></div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto overflow-hidden">
+                    <div class="">
+                        <div class="md:w-600 bg-gradient-to-br from-teal-500 to-teal-600 p-8 text-white">
+                            <h3 class="text-2xl font-semibold mb-4">Información de Contacto</h3>
+                            <p class="mb-6">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+                               <!-- FOTO PERSONAL -->
+    <div class="flex justify-center mb-6">
+        <img src="porfo.jpg" alt="Foto de Abigail" class="w-32 h-32 rounded-full shadow-lg border-4 border-white">
+    </div>
+
+    <!-- BOTÓN CV -->
+    <div class="flex justify-center mb-6">
+        <a href="CV_AbigailMacias_AnalistaDatos2025.pdf" download class="bg-white text-teal-700 font-semibold px-6 py-2 rounded-full shadow hover:bg-gray-100 transition">
+            📄 Descargar CV
+        </a>
+    </div>
+     <div class="flex justify-center mb-6">
+        <a href="referencia personal-abigail-signed.pdf" download class="bg-white text-teal-700 font-semibold px-6 py-2 rounded-full shadow hover:bg-gray-100 transition">
+            📄 Descargar Referencia Personal
+        </a>
+    </div>
+                            <div class="flex items-start mb-4">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Teléfono</p>
+                                    <p>+593 0993697793</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <p>abigailmacias.more@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Ubicación</p>
+                                    <p>Disponibilidad para trabajar remoto desde Ecuador a cualquier zona horaria</p>
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="mt-8">
+                                <p class="font-medium mb-3">Sígueme en</p>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"></path>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>-->
+                        </div>
+                        
+                         <!--<div class="md:w-1/2 p-8">
+                            <h3 class="text-2xl font-semibold mb-6 text-gray-800">Envíame un mensaje</h3>
+                            <form id="contact-form" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Asunto</label>
+                                    <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full py-3 bg-teal-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg">Enviar Mensaje</button>
+                            </form>
+                            <div id="form-success" class="hidden mt-4 p-3 bg-green-100 text-green-700 rounded-lg">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>¡Mensaje enviado con éxito! Te responderé pronto.</span>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div id="modal-image" class="mx-auto flex-shrink-0 flex items-center justify-center h-24 w-24 rounded-full bg-blue-100 sm:mx-0 sm:h-32 sm:w-32">
+                            <!-- SVG will be inserted here -->
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 id="modal-title" class="text-lg leading-6 font-medium text-gray-900"></h3>
+                            <div class="mt-2">
+                                <p id="modal-description" class="text-sm text-gray-500"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button id="close-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
